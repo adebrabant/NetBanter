@@ -25,7 +25,7 @@ namespace ChatEngine
 			return LoginResult(false, "Username already exists did you mean to login?");
 
 		std::string passwordHash = m_passwordHasher.hashPassword(password);
-		User newUser{ 1, username, passwordHash };
+		User newUser{ 1, username, passwordHash }; // ToDo: need to handle the id creation
 		m_userRepository.add(newUser);
 
 		return LoginResult(true, "Account successfully created!");
