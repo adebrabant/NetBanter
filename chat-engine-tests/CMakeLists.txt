@@ -1,5 +1,9 @@
 add_executable(${CHAT_ENGINE_TESTS_TARGET_NAME}
-
+    src/users/UserTests.cpp
+    src/users/UserRepositoryTests.cpp
+    src/sessions/LoginResultTests.cpp
+    src/authentications/AuthenticatorTests.cpp
+    src/authentications/PasswordHasherTests.cpp
 )
 
 target_include_directories(${CHAT_ENGINE_TESTS_TARGET_NAME}
