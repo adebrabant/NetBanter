@@ -4,11 +4,11 @@
 
 namespace ChatEngine 
 {
-	class LoginResult
+	class AuthResult
 	{
 	public:
-		LoginResult(const bool isSuccessful, const std::string& message);
-		~LoginResult();
+		AuthResult(const bool isSuccessful, const std::string& message);
+		~AuthResult();
 		const bool isSuccessful() const;
 		const std::string& getMessage() const;
 

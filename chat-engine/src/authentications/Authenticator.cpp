@@ -1,5 +1,5 @@
 #include "authentications/Authenticator.hpp"
-#include "sessions/LoginResult.hpp"
+#include "authentications/AuthResult.hpp"
 #include "users/UserRepository.hpp"
 #include "users/User.hpp"
 
@@ -19,27 +19,27 @@ namespace ChatEngine
 
 	}
 
-	LoginResult Authenticator::registerUser(const std::string& username, const std::string& password)
+	AuthResult Authenticator::registerUser(const std::string& username, const std::string& password)
 	{
 		if (m_userRepository.hasUser(username))
-			return LoginResult(false, "Username already exists did you mean to login?");
+			return AuthResult(false, "Username already exists did you mean to login?");
 
 		std::string passwordHash = m_passwordHasher.hashPassword(password);
 		User newUser{ 1, username, passwordHash }; // ToDo: need to handle the id creation
 		m_userRepository.add(newUser);
 
-		return LoginResult(true, "Account successfully created!");
+		return AuthResult(true, "Account successfully created!");
 	}
 
-	LoginResult Authenticator::loginUser(const std::string& username, const std::string& password) const
+	AuthResult Authenticator::loginUser(const std::string& username, const std::string& password) const
 	{
 		if (!m_userRepository.hasUser(username))
-			return LoginResult(false, "Username doesn't exist did you mean to create an account?");
+			return AuthResult(false, "Username doesn't exist did you mean to create an account?");
 
 		if (!isValidCredentials(username, password))
-			return LoginResult(false, "Username and password attempt failed!");
+			return AuthResult(false, "Username and password attempt failed!");
 
-		return LoginResult(true, "Login successful");
+		return AuthResult(true, "Login successful");
 	}
 
 	bool Authenticator::isValidCredentials(const std::string& username, const std::string& password) const

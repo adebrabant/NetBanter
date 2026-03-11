@@ -1,7 +1,7 @@
 add_executable(${CHAT_ENGINE_TESTS_TARGET_NAME}
     src/users/UserTests.cpp
     src/users/UserRepositoryTests.cpp
-    src/sessions/LoginResultTests.cpp
+    src/authentications/AuthResultTests.cpp
     src/authentications/AuthenticatorTests.cpp
     src/authentications/PasswordHasherTests.cpp
 )

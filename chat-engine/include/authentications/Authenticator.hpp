@@ -6,15 +6,15 @@
 
 namespace ChatEngine
 {
-	class LoginResult;
+	class AuthResult;
 
 	class Authenticator
 	{
 	public:
 		Authenticator(UserRepository& userRepository);
 		~Authenticator();
-		LoginResult registerUser(const std::string& username, const std::string& password);
-		LoginResult loginUser(const std::string& username, const std::string& password) const;
+		AuthResult registerUser(const std::string& username, const std::string& password);
+		AuthResult loginUser(const std::string& username, const std::string& password) const;
 
 	private:
 		bool isValidCredentials(const std::string& username, const std::string& password) const;
