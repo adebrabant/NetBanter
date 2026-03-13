@@ -13,10 +13,10 @@ add_library(${CHAT_ENGINE_TARGET_NAME}
     src/users/User.cpp
     src/users/UserRepository.cpp
 
-    include/sessions/Session.hpp
-    include/sessions/SessionManager.hpp
-    src/sessions/Session.cpp
-    src/sessions/SessionManager.cpp
+    include/clients/Client.hpp
+    include/clients/ClientManager.hpp
+    src/clients/Client.cpp
+    src/clients/ClientManager.cpp
 )
 
 target_include_directories(${CHAT_ENGINE_TARGET_NAME}
