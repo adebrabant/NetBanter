@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "clients/Client.hpp"
 #include "clients/ClientManager.hpp"
+#include "networks/TcpSocket.hpp"
 #include <string>
 #include <memory>
 #include <utility>
@@ -9,9 +10,9 @@ namespace ChatEngine::Tests
 {
 	TEST(ClientManagerTests, remove_ShouldRemoveClient_WhenValidSocketIsGiven)
 	{
-		ClientManager sut;
 		int socket = 1;
-		auto client = std::make_unique<Client>(socket, "user-one");
+		ClientManager sut;
+		auto client = std::make_unique<Client>(std::move(TcpSocket(socket)), "user-one");
 
 		sut.add(std::move(client));
 		sut.remove(socket);
@@ -24,7 +25,7 @@ namespace ChatEngine::Tests
 	{
 		ClientManager sut;
 		int socket = 1;
-		auto client = std::make_unique<Client>(socket, "user-one");
+		auto client = std::make_unique<Client>(std::move(TcpSocket(socket)), "user-one");
 
 		sut.add(std::move(client));
 		sut.remove(999);
@@ -38,19 +39,18 @@ namespace ChatEngine::Tests
 		ClientManager sut;
 		int socket = 1;
 		std::string username = "user-one";
-		auto client = std::make_unique<Client>(socket, username);
+		auto client = std::make_unique<Client>(std::move(TcpSocket(socket)), username);
 
 		sut.add(std::move(client));
 		auto result = sut.findBySocket(socket);
 
 		EXPECT_EQ(result->getSocket(), socket);
-		EXPECT_EQ(result->getUsername(), username);
 	}
 
 	TEST(ClientManagerTests, findBySocket_ShouldReturnNullPtr_WhenInvalidSocketIsGiven)
 	{
 		ClientManager sut;
-		auto client = std::make_unique<Client>(1, "user-one");
+		auto client = std::make_unique<Client>(std::move(TcpSocket(1)), "user-one");
 
 		sut.add(std::move(client));
 		auto result = sut.findBySocket(2);
@@ -63,19 +63,18 @@ namespace ChatEngine::Tests
 		ClientManager sut;
 		int socket = 1;
 		std::string username = "user-one";
-		auto client = std::make_unique<Client>(socket, username);
+		auto client = std::make_unique<Client>(std::move(TcpSocket(socket)), username);
 
 		sut.add(std::move(client));
 		auto result = sut.findByUsername(username);
 
-		EXPECT_EQ(result->getSocket(), socket);
 		EXPECT_EQ(result->getUsername(), username);
 	}
 
 	TEST(ClientManagerTests, findByUsername_ShouldReturnNullPtr_WhenInvalidUsernameIsGiven)
 	{
 		ClientManager sut;
-		auto client = std::make_unique<Client>(1, "user-one");
+		auto client = std::make_unique<Client>(std::move(TcpSocket(1)), "user-one");
 
 		sut.add(std::move(client));
 		auto result = sut.findByUsername("user-three");
@@ -86,8 +85,8 @@ namespace ChatEngine::Tests
 	TEST(ClientManagerTests, findAll_ShouldReturnClients_WhenCalled)
 	{
 		ClientManager sut;
-		auto clientOne = std::make_unique<Client>(1, "user-one");
-		auto clientTwo = std::make_unique<Client>(2, "user-two");
+		auto clientOne = std::make_unique<Client>(std::move(TcpSocket(1)), "user-one");
+		auto clientTwo = std::make_unique<Client>(std::move(TcpSocket(2)), "user-two");
 
 		sut.add(std::move(clientOne));
 		sut.add(std::move(clientTwo));

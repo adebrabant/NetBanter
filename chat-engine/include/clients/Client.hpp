@@ -1,5 +1,6 @@
 #pragma once
 
+#include "networks/TcpSocket.hpp"
 #include <string>
 
 namespace ChatEngine
@@ -7,12 +8,14 @@ namespace ChatEngine
 	class Client
 	{
 	public:
-		Client(int socket, std::string username);
-		int getSocket() const { return m_socket; }
+		Client(TcpSocket socket, std::string username);
 		std::string getUsername() const { return m_username; }
+		int getSocket() const { return m_socket.getRawSocket(); }
+		bool sendMessage(const std::string& message);
+		std::string receiveMessage();
 
 	private:
-		int m_socket;
+		TcpSocket m_socket;
 		std::string m_username;
 	};
 }

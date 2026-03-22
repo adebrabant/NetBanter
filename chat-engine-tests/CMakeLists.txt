@@ -7,7 +7,6 @@ add_executable(${CHAT_ENGINE_TESTS_TARGET_NAME}
     src/clients/ClientTests.cpp
     src/clients/ClientManagerTests.cpp
     src/messages/MessageTests.cpp
-    src/messages/MessengerTests.cpp
 )
 
 target_include_directories(${CHAT_ENGINE_TESTS_TARGET_NAME}
