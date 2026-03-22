@@ -17,6 +17,20 @@ add_library(${CHAT_ENGINE_TARGET_NAME}
     include/clients/ClientManager.hpp
     src/clients/Client.cpp
     src/clients/ClientManager.cpp
+
+    include/messages/Message.hpp
+    include/messages/Messenger.hpp
+    include/messages/DeliveryResult.hpp
+    src/messages/Message.cpp
+    src/messages/Messenger.cpp
+    src/messages/DeliveryResult.cpp
+
+    include/networks/TcpSocket.hpp
+    include/networks/TcpServer.hpp
+    include/networks/NetworkSystem.hpp
+    src/networks/TcpSocket.cpp
+    src/networks/TcpServer.cpp
+    src/networks/NetworkSystem.cpp
 )
 
 target_include_directories(${CHAT_ENGINE_TARGET_NAME}
