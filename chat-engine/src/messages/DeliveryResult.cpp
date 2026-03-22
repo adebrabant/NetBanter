@@ -1,11 +1,12 @@
 #include "messages/DeliveryResult.hpp"
 #include <string>
+#include <utility>
 
 namespace ChatEngine
 {
-	DeliveryResult::DeliveryResult(bool success, const std::string& message) :
+	DeliveryResult::DeliveryResult(bool success, std::string message) :
 		m_success(success),
-		m_message(message)
+		m_message(std::move(message))
 	{
 
 	}
