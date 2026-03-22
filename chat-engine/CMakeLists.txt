@@ -24,6 +24,13 @@ add_library(${CHAT_ENGINE_TARGET_NAME}
     src/messages/Message.cpp
     src/messages/Messenger.cpp
     src/messages/DeliveryResult.cpp
+
+    include/networks/TcpSocket.hpp
+    include/networks/TcpServer.hpp
+    include/networks/NetworkSystem.hpp
+    src/networks/TcpSocket.cpp
+    src/networks/TcpServer.cpp
+    src/networks/NetworkSystem.cpp
 )
 
 target_include_directories(${CHAT_ENGINE_TARGET_NAME}
