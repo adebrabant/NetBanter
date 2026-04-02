@@ -15,8 +15,6 @@
 #endif
 
 #include <stdexcept>
-#include <iostream>
-
 
 namespace ChatEngine
 {
