@@ -8,8 +8,10 @@ namespace ChatEngine
 	class Client
 	{
 	public:
+		Client(TcpSocket socket); 
 		Client(TcpSocket socket, std::string username);
 		std::string getUsername() const { return m_username; }
+		void setUsername(std::string username); 
 		int getSocket() const { return m_socket.getRawSocket(); }
 		bool sendMessage(const std::string& message);
 		std::string receiveMessage();
