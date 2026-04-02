@@ -31,6 +31,9 @@ add_library(${CHAT_ENGINE_TARGET_NAME}
     src/networks/TcpSocket.cpp
     src/networks/TcpServer.cpp
     src/networks/NetworkSystem.cpp
+
+    include/parsers/CommandParser.hpp
+    src/parsers/CommandParser.cpp
 )
 
 target_include_directories(${CHAT_ENGINE_TARGET_NAME}
