@@ -14,7 +14,7 @@ namespace ChatEngine::Tests
 		ClientManager sut;
 		auto client = std::make_unique<Client>(std::move(TcpSocket(socket)), "user-one");
 
-		sut.add(std::move(client));
+		sut.add(client.get());
 		sut.remove(socket);
 		auto result = sut.findBySocket(socket);
 
@@ -27,7 +27,7 @@ namespace ChatEngine::Tests
 		int socket = 1;
 		auto client = std::make_unique<Client>(std::move(TcpSocket(socket)), "user-one");
 
-		sut.add(std::move(client));
+		sut.add(client.get());
 		sut.remove(999);
 		auto result = sut.findBySocket(socket);
 
@@ -41,7 +41,7 @@ namespace ChatEngine::Tests
 		std::string username = "user-one";
 		auto client = std::make_unique<Client>(std::move(TcpSocket(socket)), username);
 
-		sut.add(std::move(client));
+		sut.add(client.get());
 		auto result = sut.findBySocket(socket);
 
 		EXPECT_EQ(result->getSocket(), socket);
@@ -52,7 +52,7 @@ namespace ChatEngine::Tests
 		ClientManager sut;
 		auto client = std::make_unique<Client>(std::move(TcpSocket(1)), "user-one");
 
-		sut.add(std::move(client));
+		sut.add(client.get());
 		auto result = sut.findBySocket(2);
 
 		EXPECT_EQ(result, nullptr);
@@ -65,7 +65,7 @@ namespace ChatEngine::Tests
 		std::string username = "user-one";
 		auto client = std::make_unique<Client>(std::move(TcpSocket(socket)), username);
 
-		sut.add(std::move(client));
+		sut.add(client.get());
 		auto result = sut.findByUsername(username);
 
 		EXPECT_EQ(result->getUsername(), username);
@@ -76,7 +76,7 @@ namespace ChatEngine::Tests
 		ClientManager sut;
 		auto client = std::make_unique<Client>(std::move(TcpSocket(1)), "user-one");
 
-		sut.add(std::move(client));
+		sut.add(client.get());
 		auto result = sut.findByUsername("user-three");
 
 		EXPECT_EQ(result, nullptr);
@@ -88,8 +88,8 @@ namespace ChatEngine::Tests
 		auto clientOne = std::make_unique<Client>(std::move(TcpSocket(1)), "user-one");
 		auto clientTwo = std::make_unique<Client>(std::move(TcpSocket(2)), "user-two");
 
-		sut.add(std::move(clientOne));
-		sut.add(std::move(clientTwo));
+		sut.add(clientOne.get());
+		sut.add(clientTwo.get());
 		auto results = sut.findAll();
 
 		EXPECT_EQ(results.size(), 2);
