@@ -1,28 +1,32 @@
-#include "fsms/ChatState.hpp"
+#include "states/ChatState.hpp"
 #include "clients/Client.hpp"
-#include "fsms/State.hpp"
+#include "states/State.hpp"
+#include "fsms/StateMachine.hpp"
 
-#include <utility>
-#include <memory>
 #include <iostream>
 #include <string>
 #include <thread>
 #include <stdexcept>
 
+
 namespace ChatClient
 {
-	ChatState::ChatState(std::unique_ptr<ChatEngine::Client> client) :
-		m_client(std::move(client))
-	{
+    ChatState::ChatState(
+        ChatEngine::StateMachine& stateMachine, 
+        ChatEngine::Client& client
+    ) :
+        State(stateMachine),
+        m_client(client)
+    {
 
-	}
+    }
 
-	std::unique_ptr<State> ChatState::onProcess()
+    void ChatState::handle()
 	{
         std::thread receiveThread([this]() {
             while (true) {
                 try {
-                    std::string message = m_client->receiveMessage();
+                    std::string message = m_client.receiveMessage();
                     if (!message.empty())
                         std::cout << message << std::endl;
                 }
@@ -42,12 +46,10 @@ namespace ChatClient
             if (input.empty())
                 continue;
 
-            if (!m_client->sendMessage(input))
+            if (!m_client.sendMessage(input))
                 std::cout << "Failed to send message!" << std::endl;
         } while (input != "quit");
 
         receiveThread.join(); 
-
-		return std::unique_ptr<State>();
 	}
 }

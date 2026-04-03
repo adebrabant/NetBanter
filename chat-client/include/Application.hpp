@@ -1,8 +1,9 @@
 #pragma once
 
-#include "networks/TcpSocket.hpp"
 #include "networks/NetworkSystem.hpp"
 #include "fsms/StateMachine.hpp"
+#include "clients/Client.hpp"
+#include <memory>
 
 namespace ChatClient
 {
@@ -14,8 +15,11 @@ namespace ChatClient
 		int run();
 
 	private:
+		void setup();
+
+	private:
 		ChatEngine::NetworkSystem m_network;
-		ChatEngine::TcpSocket m_tcpSocket;
-		ChatClient::StateMachine m_stateMachine;
+		ChatEngine::StateMachine m_stateMachine;
+		std::unique_ptr<ChatEngine::Client> m_client;
 	};
 }

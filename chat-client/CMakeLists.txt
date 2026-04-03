@@ -3,27 +3,23 @@ add_executable(${CHAT_CLIENT_TARGET_NAME}
     src/Application.cpp
     include/Application.hpp
 
-    include/fsms/StateMachine.hpp
-    src/fsms/StateMachine.cpp
-    include/fsms/State.hpp
+    include/states/EnterState.hpp
+    src/states/EnterState.cpp
 
-    include/fsms/EnterState.hpp
-    src/fsms/EnterState.cpp
+    include/states/LoginState.hpp
+    src/states/LoginState.cpp
 
-    include/fsms/LoginState.hpp
-    src/fsms/LoginState.cpp
+    include/states/ChatState.hpp
+    src/states/ChatState.cpp
 
-    include/fsms/ChatState.hpp
-    src/fsms/ChatState.cpp
+    include/states/ExitState.hpp
+    src/states/ExitState.cpp
 
-    include/fsms/ExitState.hpp
-    src/fsms/ExitState.cpp
+    include/states/RegistrationState.hpp
+    src/states/RegistrationState.cpp
 
-    include/fsms/RegistrationState.hpp
-    src/fsms/RegistrationState.cpp
-
-    include/fsms/MainMenuState.hpp
-    src/fsms/MainMenuState.cpp
+    include/states/MainMenuState.hpp
+    src/states/MainMenuState.cpp
 )
 
 target_include_directories(${CHAT_CLIENT_TARGET_NAME}
