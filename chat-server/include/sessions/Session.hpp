@@ -6,7 +6,7 @@
 #include "networks/TcpSocket.hpp"
 #include "clients/ClientManager.hpp"
 #include "clients/Client.hpp"
-#include "fsms/SessionStateMachine.hpp"
+#include "fsms/StateMachine.hpp"
 #include <memory>
 
 namespace ChatEngine
@@ -35,7 +35,7 @@ namespace ChatServer
 		ChatEngine::ClientManager& m_clientManager;
 		ChatEngine::UserRepository& m_userRepository;
 		ChatEngine::Messenger m_messenger;
-		ChatServer::SessionStateMachine m_stateMachine;
+		ChatEngine::StateMachine m_stateMachine;
 		std::unique_ptr<ChatEngine::Client> m_client;
 	};
 }

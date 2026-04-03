@@ -6,13 +6,11 @@ add_executable(${CHAT_SERVER_TARGET_NAME}
     include/sessions/Session.hpp
     src/sessions/Session.cpp
 
-    include/fsms/SessionStateMachine.hpp
-    src/fsms/SessionStateMachine.cpp
-    include/fsms/SessionState.hpp
-    include/fsms/UnauthenticatedState.hpp
-    src/fsms/UnauthenticatedState.cpp
-    include/fsms/AuthenticatedState.hpp
-    src/fsms/AuthenticatedState.cpp
+    include/states/UnauthenticatedState.hpp
+    src/states/UnauthenticatedState.cpp
+
+    include/states/AuthenticatedState.hpp
+    src/states/AuthenticatedState.cpp
 )
 
 target_include_directories(${CHAT_SERVER_TARGET_NAME}

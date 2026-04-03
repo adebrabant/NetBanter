@@ -4,8 +4,8 @@
 #include "networks/TcpSocket.hpp"
 #include "users/UserRepository.hpp"
 #include "clients/Client.hpp"
-#include "fsms/AuthenticatedState.hpp"
-#include "fsms/UnauthenticatedState.hpp"
+#include "states/AuthenticatedState.hpp"
+#include "states/UnauthenticatedState.hpp"
 
 #include <utility>
 #include <memory>
