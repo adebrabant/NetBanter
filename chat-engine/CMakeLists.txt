@@ -34,6 +34,11 @@ add_library(${CHAT_ENGINE_TARGET_NAME}
 
     include/parsers/CommandParser.hpp
     src/parsers/CommandParser.cpp
+
+    include/fsms/StateMachine.hpp
+    src/fsms/StateMachine.cpp
+
+    include/states/State.hpp
 )
 
 target_include_directories(${CHAT_ENGINE_TARGET_NAME}
