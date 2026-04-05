@@ -1,5 +1,6 @@
 #include "states/ExitState.hpp"
 #include "states/State.hpp"
+#include "fsms/StateMachine.hpp"
 
 namespace ChatClient
 {
@@ -11,6 +12,6 @@ namespace ChatClient
 
 	void ExitState::handle()
 	{
-
+		m_stateMachine.exit();
 	}
 }

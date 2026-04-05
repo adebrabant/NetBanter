@@ -1,6 +1,7 @@
 #pragma once
 
 #include "states/State.hpp"
+#include "fsms/StateMachine.hpp"
 
 namespace ChatClient
 {

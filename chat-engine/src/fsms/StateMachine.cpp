@@ -16,4 +16,9 @@ namespace ChatEngine
 			m_currentState->handle();
 		}
 	}
+
+	void StateMachine::exit()
+	{
+		m_currentState = nullptr;
+	}
 }
