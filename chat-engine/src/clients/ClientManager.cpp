@@ -2,7 +2,6 @@
 #include <clients/Client.hpp>
 #include <string> 
 #include <vector>
-#include <memory>
 #include <utility>
 
 namespace ChatEngine
@@ -14,13 +13,13 @@ namespace ChatEngine
 
 	}
 
-	void ClientManager::add(std::unique_ptr<Client> client)
+	void ClientManager::add(Client* client)
 	{
 		int socket = client->getSocket();
 		std::string username = client->getUsername();
 
 		m_clientSockets.emplace(socket, std::move(client));
-		m_clientUsernames.emplace(username, m_clientSockets[socket].get());
+		m_clientUsernames.emplace(username, m_clientSockets[socket]);
 	}
 
 	void ClientManager::remove(int socket)
@@ -28,7 +27,7 @@ namespace ChatEngine
 		auto it = m_clientSockets.find(socket);
 		if (it != m_clientSockets.end())
 		{
-			m_clientUsernames.erase(it->second.get()->getUsername());
+			m_clientUsernames.erase(it->second->getUsername());
 			m_clientSockets.erase(it->first);
 		}
 	}
@@ -36,7 +35,7 @@ namespace ChatEngine
 	Client* ClientManager::findBySocket(int socket)
 	{
 		auto it = m_clientSockets.find(socket);
-		return (it != m_clientSockets.end()) ? it->second.get() : nullptr;
+		return (it != m_clientSockets.end()) ? it->second : nullptr;
 	}
 
 	Client* ClientManager::findByUsername(std::string username)

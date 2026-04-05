@@ -5,11 +5,23 @@
 
 namespace ChatEngine
 {
+
+	Client::Client(TcpSocket socket) :
+		m_socket(std::move(socket))
+	{
+
+	}
+
 	Client::Client(TcpSocket socket, std::string username) :
 		m_socket(std::move(socket)),
 		m_username(username)
 	{
 
+	}
+
+	void Client::setUsername(std::string username)
+	{
+		m_username = username;
 	}
 
 	bool Client::sendMessage(const std::string& message)
